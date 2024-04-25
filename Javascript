@@ -1,0 +1,26 @@
+function generateCode(line, destination, stops) {
+    var code = '{"Line":"' + line + '","Destination":"' + destination + '","Stops":[';
+    stops.forEach(function(stop, index) {
+        code += '"' + stop + '"';
+        if (index < stops.length - 1) {
+            code += ',';
+        }
+    });
+    code += ']}';
+    return code;
+}
+
+function main() {
+    var line = prompt("Zadejte číslo linky: ");
+    var destination = prompt("Zadejte destinaci: ");
+    var stopsStr = prompt("Zadejte zastávky oddělené čárkou: ");
+    var stops = stopsStr.split(",").map(function(stop) {
+        return stop.trim();
+    });
+
+    var generatedCode = generateCode(line, destination, stops);
+    console.log("Vygenerovaný kód:");
+    console.log(generatedCode);
+}
+
+main();
